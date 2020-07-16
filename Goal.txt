@@ -1,0 +1,7 @@
+!!!GOALS!!!
+Make essential information for MUSC Student easy to access.
+
+Things to concern
+1. This is open project
+2. The more contributor the better
+3. Not everyone can code but everyone can contribute
