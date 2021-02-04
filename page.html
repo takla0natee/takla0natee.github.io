@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>JS Week3</title>
+    <base target="_blank">
+    
+    <meta charset="UTF-8">
+    <style>
+    
+        .mySlides {display: none}
+        
+        a{
+            color:black;
+        }
+        
+        h1{
+            background-color: lightgray;
+        }
+    
+        body{
+            font-family: "Georgia", "Georgia", serif;
+        }
+        
+        
+        table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 2px;
+        }
+    
+        </style>
+</head>
+
+<body style="margin: 2% 10% 3%; background-color:010101;">
+
+<h1>Rectangle area calculator</h1>
+<p> The users input the height and the width of their desired rectangle. Its area shall be display in the result secton.<br> <br>
+    This programe display the result in the resolution according to user's inputs.</p>
+
+<h3>Input</h3>
+<p>The height of the rectangle is</p>
+
+<input id="height">
+
+<p>The width of the rectangle is</p>
+
+<input id="width">
+
+<button type="button" onclick="rectangleArea()">calculate</button>
+
+<h3>Result</h3>
+<p id="result"> The result shall be here. Just click calculate </p>
+
+<script>
+function rectangleArea() {
+  var x, y, A, text;
+
+  // Get the value of the input field with id="numb"
+  x = document.getElementById("height").value;
+  y = document.getElementById("width").value;
+
+
+    var xS = x.toString();
+    var yS = y.toString();
+    var xIndex = xS.indexOf(".");
+    var yIndex = yS.indexOf(".");
+    var xDeci = (xS.length - xIndex - 1);
+    var yDeci = (yS.length - yIndex - 1);
+    
+
+    //if user input one integer and another float
+        if (xIndex==-1 && yIndex!=-1) {
+        xDeci=0
+    }
+    else if (yIndex==-1 && xIndex!=-1) {
+        yDeci=0
+    }
+    else{
+    }
+
+    var deci = xDeci+yDeci;
+
+    //if user input integer
+    if (Math.round(x)-x==0 && Math.round(y)-y == 0){
+        deci=0;
+    } 
+    else{
+    }
+
+    // // For debugging
+    // console.log("xIndex is")
+    // console.log(xIndex)
+    // console.log("yIndex is")
+    // console.log(yIndex)
+    // console.log("xDeci is")
+    // console.log(xDeci)
+    // console.log("yDeci is")
+    // console.log(yDeci)
+    // console.log("Deicmal place should be "+deci.toString())
+
+
+  if (x=="" || y=="") {
+    text = "please input the height and the width. It shouln't be empty"
+  } else if (isNaN(x) || isNaN(y)){
+    text = "please input the heigth and the width. It should be a number";
+  }
+else {
+    A = x*y
+    A = A.toFixed(deci)
+    text = "your rectangle has the area of " + A.toString();
+  }
+  document.getElementById("result").innerHTML = text;
+}
+</script>
+
+
+
+</body>
+</html>
+
