@@ -1,0 +1,112 @@
+<input id="numPar" type="number" value="2"> <br>
+<button onclick="init()">RUN</button> <br>
+
+<canvas id="canvas" width="200" height="200" style="border:1px solid black"></canvas>
+
+
+<script>
+  canvas = document.getElementById("canvas");
+  ctx = canvas.getContext("2d");
+  class Particle {
+    constructor(m, x, y, vx, vy, r, h) {
+      this.m = m; this.x = x; this.y = y; this.vx = vx; this.vy = vy;
+      this.r = r; this.h = h; //h is time step
+    }
+    move() {
+      this.x += this.h * this.vx;
+      this.y += this.h * this.vy;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+      ctx.fill();
+    }
+  }
+
+  
+
+  function init() {
+    console.log("RUN")
+    numberOfParticle = parseFloat(document.getElementById("numPar").value);
+    h = 0.4; //time step
+    p = []
+    for (i=0; i < numberOfParticle; i++) {
+      console.log(i)
+      p01 = new Particle(1, canvas.width * Math.random(), canvas.height * Math.random(),
+            3 * Math.random() + 1, 3 * Math.random(), 8, h);
+      p.push(p01);
+    }
+    window.requestAnimationFrame(draw);
+  }
+
+
+
+
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (i = 0; i < p.length; i++) {
+      p[i].move();
+    }
+    detectCollision();
+    detectBoundary();
+    window.requestAnimationFrame(draw);
+  }
+
+  function detectCollision() {
+    for (i = 0; i < p.length - 1; i++) {
+      for (j = 0; j < p.length; j++) {
+        if (j > i) {
+          p1 = p[i];
+          p2 = p[j];
+          vxT = p1.vx;
+          vyT = p1.vy;
+          dis = Math.sqrt((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2)
+          // dis = Math.abs(p1.x - p2.x);
+          radius_added = p1.r + p2.r;
+          if (dis <= radius_added) {
+            console.log("collide");
+            // v1 = (p1.vx)**2 + (p1.vy)**2;
+            // v2 = (p2.vx)**2 + (p2.vy)**2;
+            vx1_newFrame = 0; vy1_newFrame = 0; //change frame of ref where v1_newFrame is at rest 
+            vx2_newFrame = p2.vx - p1.vx;
+            vy2_newFrame = p2.vy - p1.vy;
+
+            //Collision
+            vx1_newFrame = vx2_newFrame; vy1_newFrame = vy2_newFrame; //elastic colision and identical mass so velocity just exchange
+            vx2_newFrame = 0; vy2_newFrame = 0;
+
+            //change the coordinate back and assign to the particle; 
+            p[i].vx = vx1_newFrame + vxT; p[i].vy = vy1_newFrame + vyT;
+            p[j].vx = vx2_newFrame + vxT; p[j].vy = vy2_newFrame + vyT;
+          }
+        }
+      }
+
+
+    }
+
+  }
+  function detectBoundary() {
+    var i;
+    // console.log("Hello")
+    for (i = 0; i < p.length; i++) {
+      // console.log("enter loop");
+      if (p[i].x < 0 && p[i].vx < 0) {
+        console.log("at boundary");
+        p[i].vx = -1 * p[i].vx;
+      }
+      else if (p[i].x > canvas.width && p[i].vx > 0) {
+        console.log("at boundary");
+        p[i].vx = -1 * p[i].vx;
+      }
+      if (p[i].y < 0 && p[i].vy < 0) {
+        console.log("at boundary");
+        p[i].vy = -1 * p[i].vy;
+      }
+      else if (p[i].y > canvas.height && p[i].vy > 0) {
+        console.log("at boundary");
+        p[i].vy = -1 * p[i].vy;
+      }
+    }
+
+  }
+</script>
