@@ -1,0 +1,85 @@
+<canvas id="myCanvas" width="700" height="600" style="border:1px solid black"></canvas>
+
+<script>
+    canvas = document.getElementById("myCanvas");
+    ctx = canvas.getContext("2d");
+
+    //initial 
+    x0 = 350; y0=500; 
+
+    lw = 8;
+
+    lenght = 120;
+
+    ctx.lineWidth = lw;
+
+    ctx.beginPath(); //First stroke
+    ctx.moveTo(x0, y0);
+    dx =0 ; dy= lenght;
+    x_new = x0+dx; y_new = y0-dy;
+
+    ctx.lineTo(x0 , y0-lenght);
+    ctx.stroke();
+
+    dxP=dx; dxM=dx;
+    dyP=dy; dyM=dy;
+    ang0 = 0.15;
+    ang = ang0;
+    // ang = 2*Math.PI/12 //rad
+    ratio = 0.9;
+    n=5;
+
+    EndPoint = [[x_new, y_new]];
+    endPointCount = 1;
+    ratio0 =ratio;
+
+
+    for (i=0; i<n; i++){ //For second stroke and beyond
+        lenght = lenght*ratio;
+        lw = lw*0.7;
+        ctx.lineWidth = lw;
+        newEndPoint = []
+        ang = (i+1)*ang0;
+        ratio = ratio0**(i+1);
+
+        for (j=0; j<endPointCount; j++){
+            console.log(ang)
+
+            dxP = ratio*(Math.cos(ang)*dx + Math.sin(ang)*dy) ; dxM = ratio*(Math.cos(ang)*dxM - Math.sin(ang)*dy) ;
+            dyP = ratio*(-Math.sin(ang)*dx + Math.cos(ang)*dy); dyM = ratio*(Math.sin(ang)*dxM + Math.cos(ang)*dy);
+            
+            x_new01 = EndPoint[j][0] + dxP; x_new02 = EndPoint[j][0] + dxM; 
+            y_new01 = EndPoint[j][1] - dyP; y_new02 = EndPoint[j][1] - dyM; 
+
+            ctx.beginPath();
+            ctx.moveTo(EndPoint[j][0],EndPoint[j][1]);
+            ctx.lineTo(x_new01, y_new01);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(EndPoint[j][0],EndPoint[j][1]);
+            ctx.lineTo(x_new02, y_new02);
+            ctx.stroke();
+
+            newEndPoint.push([x_new01,y_new01]);
+            newEndPoint.push([x_new02,y_new02]);
+
+        }
+
+        EndPoint=newEndPoint
+        endPointCount=2**(i+1);
+    }
+    
+
+    function createLine(angle, ratio){
+        lw = lw*ratio
+        ctx.lineWidth = lw;
+        dx = 
+        dy = 
+
+        ctx.beginPath();
+        ctx.moveTo(x0+dx, y0 + g - yPos);
+        ctx.lineTo(x0 + xPosNext, y0 + g - yPosNext);
+        ctx.stroke();
+    }
+</script>
