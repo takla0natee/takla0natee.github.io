@@ -124,6 +124,10 @@ body {
     
 }
 
+.page-content-sidebar{
+    display:none;
+}
+
 
 @media only screen and (min-width: 1080px) {
 
@@ -175,7 +179,7 @@ body {
         position:relative;
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: left;
     }
 
     .page-content {
@@ -203,6 +207,7 @@ body {
         }
 }
     .page-content-sidebar{
+        background-color: skyblue;
         flex:1;
     }
 
