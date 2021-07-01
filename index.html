@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,61 +6,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Takla</title>
     <link rel="stylesheet" href="./css/main.css">
-
-    <!-- Mathematical notation -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-    <title>Takla's github homepage</title>
-    <base target="_blank">
-
-    <meta charset="UTF-8">
-
 </head>
 
 <body>
+    <div class="navbar">
+        <div class="logo"><a href="#">Takla's github</a></div>
+        <div class="menu"><a href="#" onclick="toggleMenu()">☰ Menu</a></div>
 
-    <div class="nav">
-
-        <div class="navbar">
-            <div class="logo"> <a href="#" style="text-decoration: none; color:white;"><b>Takla's Github Site</b></a> </div>
-            <!-- <div class="menu"> <a href="#" onclick="toggleMenu()">☰ Menu</a></div> -->
-            <!-- <div class="menu-bar">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                </ul>
-            </div> -->
+        <div class="menu-bar">
+            <a href="#"><b>Home</b></a>
+            <a href="about.html">About</a>
         </div>
-
-
+    </div>
+    <div class="menu-items" id="menu-items">
+        <ul>
+            <li><a href="#"><b>Home</b></a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
     </div>
 
     <div class="page-wrap">
         <div class="page-content">
+            <h1>Greeting to y'all!</h1>
+            <p>
+                Hi, this is home page for my github site. here're some of my coding work.
+            </p>
 
+            <h2>Coding Project</h2>                 
 
-            <h1>Web apps</h1>
+            <div class="card-stack">
+                <div class="card">
+                        <img src="img/rectangle-area-calculator.png" alt="screenshot of the program">
+                    <div class="card-container">
+                      <h4><a href="page.html"> <b>Rectangle Area Calculator</b> </a></h4> 
+                      <p>description</p> 
+                    </div>
+                  </div>
+                <div class="card">
+                        <img src="img/random-gas.png" alt="screenshot of the program">
+                    <div class="card-container">
+                      <h4><a href="Gas_chamber.html"> <b>Gas molecules simulation</b></a></h4> 
+                      <p>description</p> 
+                    </div>
+                  </div>
+                <div class="card">
+                        <img src="img/fractal-tree.png" alt="screenshot of the program">
+                    <div class="card-container">
+                      <h4><a href="FractalCanopy.html"><b>Fractal Tree drawing</b></a></b></h4> 
+                      <p>description</p> 
+                    </div>
+                </div>
+                <div class="card">
+                        <img src="img/blackjack.png" alt="screenshot of the program">
+                    <div class="card-container">
+                      <h4><a href="https://www.takla.codes/BlackjackCalculator/"><b>Black Jack Calculator</b></a></b></h4> 
+                      <p>description</p> 
+                    </div>
+                </div>
+                
+            </div>
 
-            <br>
-
-            <h2>List of pages</h2>
-            <ul>
-                <li><a href="page.html"> Rectangle Area Calculator </a></li>
-                <li> <a href="Gas_chamber.html"> Gas molecules simulation</a> </li>
-                <li> <a href="FractalCanopy.html">Fractal Tree drawing</a> </li>
-                <li> <a href="https://www.takla.codes/BlackjackCalculator/"> Black Jack Calculator </a>
-                </li>
-            </ul>
         </div>
-        <div class="page-content-sidebar">
-
-        </div>
+        <!-- <div class="page-sidebar">
+            Share!
+        </div> -->
     </div>
 
 
 
+    <div class="footer-bar">
+        <div class="footer-item">&copy; 2021 Takla Nateeboon.</div>
+        <div class="footer-item"></div>
+        <div class="footer-item"></div>
+        <!-- <div class="footer-item">Sitemap</div> -->
+        <!-- <div class="footer-item">About</div> -->
+    </div>
 
+    <!-- control element in page -->
+    <script src="js/uiux.js"> </script>
 
 </body>
 
